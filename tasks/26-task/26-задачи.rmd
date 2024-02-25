@@ -1,0 +1,75 @@
+---
+mainfont: AnonymicePro Nerd Font Mono
+title: '**Решаем 26-е задания**'
+geometry: 'top=1.5cm,bottom=2.5cm,left=2cm,right=2cm'
+documentclass: extarticle
+fontsize: 11pt
+output:
+  pdf_document:
+    latex_engine: xelatex
+    pandoc_args:
+      - '--highlight-style=tango'
+linkcolor: blue
+link-citations: 'yes'
+---
+\center \textbf{Первая задача} \center
+![](../../data/26-23.png)
+
+```{python}
+file = open('../../data/26-files/26-k3.txt', encoding='utf-8')
+
+_, k, m = map(int, file.readline().split())
+
+scores = map(int, file.readlines())
+sorted_scores = sorted(scores, reverse=True)
+
+wins = sorted_scores[:k]
+sorted_scores = sorted_scores[k:]
+pre_wins = sorted_scores[:m]
+
+file.close()
+
+print(min(wins), min(pre_wins))
+```
+
+\newpage
+\center \textbf{Вторая задача} \center
+![](../../data/26-89.png)
+
+```{python}
+import itertools
+
+def find_couples(n, nums):
+    couples = []
+    cur_n = n
+    ind = 0
+    while ind != (len(nums) - 1):
+        if nums[ind] - cur >= 3:
+            couples.append((cur, nums[ind]))
+            cur = nums[ind]
+        ind += 1
+    return couples
+
+
+file = open('../../data/26-files/26-89.txt', encoding='utf-8')
+
+nums = sorted([int(n) for n in file.readlines()[1:]])  # ()
+
+min_first = float('-inf')
+max_len = float('-inf')
+for ind, n in enumerate(nums, start=1):
+    if ind == len(nums):  # ()
+        break
+
+    couples = find_couples(n, nums[ind:])  # ()
+    couples = itertools.chain(*couples)
+    couples = tuple(set(couples))
+
+    if couples:
+        if len(couples) > max_len:
+            min_first = couples[0]
+            max_len = len(couples)
+
+file.close()
+print(min_first, max_len)
+```
