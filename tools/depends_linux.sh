@@ -1,3 +1,6 @@
+mkdir /tmp/depends/
+cd /tmp/depends
+
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Установка необходимых инструментов"
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -14,6 +17,14 @@ echo "~~~~~~~~~~~~~~~~~~~"
 echo "Установка RMarkdown"
 echo "~~~~~~~~~~~~~~~~~~~"
 Rscript -e "install.packages('rmarkdown')"
+Rscript -e "install.packages('reticulate')"
+
+echo ""
+echo "~~~~~~~~~~~~~~~"
+echo "Установка Latex"
+echo "~~~~~~~~~~~~~~~"
+sudo pacman -Ss texlive-base texlive-lang-cyrillic texlive-latex-recommmended texlive-xetex
+
 
 echo ""
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -23,7 +34,7 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/AnonymousP
 unzip AnonymousPro.zip -d fonts
 rm -rf AnonymousPro.zip
 cd fonts
-cp *.ttf ~/.local/share/fonts
+cp *.ttf /usr/share/fonts
 
 echo ""
 echo "~~~~~~~~~~~"
