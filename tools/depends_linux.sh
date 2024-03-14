@@ -23,7 +23,7 @@ echo ""
 echo "~~~~~~~~~~~~~~~"
 echo "Установка Latex"
 echo "~~~~~~~~~~~~~~~"
-sudo pacman -S texlive-base texlive-lang-cyrillic texlive-latex-recommended texlive-xetex
+sudo pacman -S texlive-base texlive-lang-cyrillic texlive-latex-recommended texlive-xetex pandoc
 
 
 echo ""
