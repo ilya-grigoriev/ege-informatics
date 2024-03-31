@@ -1,0 +1,131 @@
+\documentclass[14pt]{extreport}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{vmargin}
+\usepackage{minted}
+\usepackage{graphicx}
+\graphicspath{ {../../data/15-images/} }
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=blue
+}
+\setmarginsrb{2cm}{2cm}{1.5cm}{2cm}{0pt}{0mm}{0pt}{13mm}
+\usepackage{xcolor}
+\definecolor{LightGray}{gray}{0.97}
+\sloppy
+\title{Решение задач для 15-го задания}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Задачки на делимость}
+\section{Задача на делимость (первый способ)}
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{121-polyakov}
+\end{figure}
+
+В данном случае мы воспользуемся флажком, который будет сигнализировать нам о том, подходит ли данное число или нет.
+
+\begin{minted}[bgcolor=LightGray]{python}
+def Del(n, m):
+    return n % m == 0
+
+
+def func(x, a):
+    return ((not Del(x, a)) and Del(x, 21)) <= (not Del(x, 14))
+
+
+for a in range(10_000, 1, -1):
+    a_correct = True
+    for x in range(1, 10_000):
+        if func(x, a) is not True:
+            a_correct = False
+            break
+
+    if a_correct:
+        print(a)
+        break
+\end{minted}
+
+Нам нужно наибольшее число \texttt{a}, поэтому мы идем по убыванию.
+
+С помощью переменной \texttt{a\_correct} я обозначаю условие, при котором все $x$ удовлетворяют формуле.
+
+Если хотя бы один $x$ не удовлетворяет формуле, то переводим флажок в статус \texttt{False}.
+
+Как только мы находим нужное значение \texttt{a}, выводим его и выходим.
+
+Ответ: \boxed{42}
+
+\newpage
+\section{Задача на делимость (второй способ)}
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{128-polyakov}
+\end{figure}
+
+Если в предыдущем примере мы использовали флажок, то теперь воспользуемся особенностями Python, т.е. конструкцией \texttt{for ... else}.
+
+\begin{minted}[bgcolor=LightGray]{python}
+def Del(n, m):
+    return n % m == 0
+
+
+def func(x, a):
+    return (not Del(x, 18)) <= ((not Del(x, a)) <= (not Del(x, 12)))
+
+
+for a in range(10_000, 1, -1):
+    for x in range(1, 10_000):
+        if func(x, a) is not True:
+            break
+    else:
+        print(a)
+        break
+\end{minted}
+
+Логика конструкции \texttt{for ... else} заключается в следующем: если цикл \texttt{for} не завершился аварийно (с помощью \texttt{break}, например), то в случае успеха мы переходим в блок \texttt{else}.
+
+Ответ: $\boxed{12}$
+
+\textit{Нужно стараться перебирать значения $x$ побольше}.
+
+\newpage
+\section{Задача на делимость (третий способ)}
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{131-polyakov.png}
+\end{figure}
+
+Теперь мы воспользуемся генераторным выражением.
+
+\begin{minted}[bgcolor=LightGray,breaklines=true]{python}
+def Del(n, m):
+    return n % m == 0
+
+
+def func(x):
+    return (Del(x, a) and Del(x, 12)) <= (Del(x, 42) or (not Del(x, 12)))
+
+for a in range(1, 10_000):
+    results = [func(x) for x in range(1, 10_000)]
+
+    if all(results):
+        print(a)
+        break
+\end{minted}
+
+Как это вообще работает, если мы убрали \texttt{a}? Дело в том, что здесь $a$ выступает в роли \href{https://docs.python.org/3/faq/programming.html#what-are-the-rules-for-local-and-global-variables-in-python}{глобальный (\textit{global}) переменной}. В данном случае, когда мы входим в функцию \texttt{func}, то Python ищет нашу переменную \texttt{a} внутри функции, в которой она используется. Если не удалось ее найти, Python ищет ее в глобальной области видимости. И тут уже она находится.
+
+С помощью \href{https://peps.python.org/pep-0289/}{генераторного выражения} мы создаем список с результатами значений формул.
+
+Благодаря \texttt{all} проверяем, при всех ли значениях \texttt{x} формула истинна.
+
+Ответ: $\boxed{7}$
+\end{document}
