@@ -1,0 +1,246 @@
+---
+mainfont: AnonymicePro Nerd Font
+monofont: AnonymicePro Nerd Font Mono
+geometry: "top=1.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm"
+documentclass: extreport
+title: Решение задач для 15-го задания
+fontsize: 14pt
+output:
+  pdf_document:
+    number_sections: false
+    latex_engine: xelatex
+    pandoc_args: ["--highlight-style=tango"]
+    extra_dependencies:
+        - hyperref
+        - setspace
+        - amsmath
+linkcolor: blue
+fontenc: T2A
+lang: ru-RU
+babel-lang: russian
+---
+\tableofcontents
+
+\newpage
+
+\chapter{Маленькое введение}
+
+- Нужно перебирать как можно большее кол-во `x, y` и т.д.
+
+- Лучше, конечно, сравнивать результаты при разных диапазонах `x, y` и т.д. Исследовать функцию, так сказать.
+
+- Например, при одном диапазоне у вас получились подходящие числа `A` от 100 до 200. Теперь эти значения (список из чисел от 100 до 200) опять отправьте на обработку, но уже с большим диапазоном `x, y` и т.д. Это поможет вам убедиться в правильности ответа.
+
+\chapter{Решаем задачки с помощью флажка}
+\section{Задача \textnumero~349 (Поляков)}
+![](../../data/15-images/349-polyakov.png)
+
+- Пройдемся по всем `A` и создадим флажок, который будет использоваться в качестве сигнала для проверки того, подходят ли значения `A, k, m` или нет:
+```python
+for A in range(0, 1000):
+    flag = True
+```
+
+- Проходимся по `k` и `m`:
+```python
+for k in range(0, 1000):
+    for m in range(0, 1000):
+```
+
+- Теперь пройдемся по формуле только в том случае, если перед этим наши значения `k, m` были валидными:
+```python
+if flag:
+    exp = (k + 9 * m > 121) or ((k - 13 <= A) and (m + 12 < A))
+    if exp is not True:
+        flag = False
+```
+
+- По завершении этих двух циклов делаем проверку нашего флажка:
+```python
+if flag is True:
+    print(A)
+    break
+```
+
+**Итоговый код**:
+```{python,eval=FALSE}
+for A in range(0, 1000):
+    flag = True
+    for k in range(0, 1000):
+        for m in range(0, 1000):
+            if flag:
+                exp = (k + 9 * m > 121) or ((k - 13 <= A)
+                    and (m + 12 < A))
+                if exp is not True:
+                    flag = False
+    if flag:
+        print(A)
+        break
+```
+
+- Получаем ответ: **108**.
+
+\fbox{\parbox{\textwidth}{Т.к. в задании говорится, что нужны неотрицательные значения `k,m`, то они начинаются с нуля. Если бы спрашивались положительные (или натуральные), то начинали бы с единицы.}}
+
+\chapter{Решаем задачки с помощью списковых включений}
+\section{Задача \textnumero~360 (Поляков)}
+![](../../data/15-images/360-polyakov.png)
+
+- Напишем функцию, в которую будем закидывать наши значения `A, B, x, y`:
+```python
+def func(x, y):
+    return (y <= ((x - 4) ** 2 + 2 + abs((x - 2)**2 - 16) ))
+    == ((y <= 2*(x**2) - 12 * x + A) or (y <= - 4 * x + B))
+```
+
+- Пишем итерацию для `A, B`:
+```python
+for A in range(1000):
+    for B in range(1000):
+```
+
+- Здесь мы воспользуемся [списковым включением](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) и [функцией `all`](https://docs.python.org/3/library/functions.html#all):
+```python
+results = all(func(x, y) for x in range(1000)
+    for y in range(1000))
+
+if results:
+    print(A + B)
+    exit()
+```
+
+- Мы не передаем функции `func(x, y)` значения `A, B`, т.к. пользуемся возможностью [глобальных переменных в Python](https://docs.python.org/3/faq/programming.html#what-are-the-rules-for-local-and-global-variables-in-python) ([статья на русском языке](https://pythonru.com/osnovy/globalnye-peremennye-python)).
+- Со значениями `x, y` мы не можем сделать то же самое, т.к. они находятся в [своей области видимости](https://stackoverflow.com/questions/4198906/list-comprehension-rebinds-names-even-after-scope-of-comprehension-is-this-righ).
+- Можно, конечно, воспользоваться [моржовым оператором](https://peps.python.org/pep-0572/) и получить следующее *чудо*:
+```python
+def func():
+    return (y <= ((x - 4) ** 2 + 2 + abs((x - 2)**2 - 16) )) \
+    == ((y <= 2*(x**2) - 12 * x + A) or (y <= - 4 * x + B))
+
+
+for A in range(1000):
+    for B in range(1000):
+        x = None
+        y = None
+        results = ((x:=x_, y := y_, func()) for x_ in range(1000)
+            for y_ in range(1000))
+
+        if all(result[2] for result in results):
+            print(A + B)
+            exit()
+```
+- Стоит ли оно того?
+
+
+**Итоговый код**:
+```python
+def func(x, y):
+    return (y <= ((x - 4) ** 2 + 2 + abs((x - 2)**2 - 16) )) \
+    == ((y <= 2*(x**2) - 12 * x + A) or (y <= - 4 * x + B))
+
+
+for A in range(1000):
+    for B in range(1000):
+        results = all(func(x, y) for x in range(1000)
+            for y in range(1000))
+
+        if results:
+            print(A + B)
+            exit()
+```
+
+- Ответ: **36**
+
+\chapter{Задачи на порязрядную конъюнкцию}
+\section{Задача \textnumero~523 (Поляков)}
+![](../../data/15-images/523-polyakov.png)
+
+- Поразрядная конъюнкция в Python обозначается так же: `&`.
+
+- Напишем функцию, в которой будем проверять формулу:
+```python
+def func(x):
+    return ((x & 112 != 0) or (x & 86 != 0)) \
+        <= ((x & 65 == 0) <= (x & A != 0))
+```
+
+- Затем напишем итерацию по `A` и воспользуемся списковым включением:
+```python
+for A in range(100):
+    results = all(func(x) for x in range(1, 100_000))
+
+    if results:
+        print(A)
+        break
+```
+
+**Итоговый код:**
+```python
+def func(x):
+    return ((x & 112 != 0) or (x & 86 != 0)) \
+        <= ((x & 65 == 0) <= (x & A != 0))
+
+
+for A in range(100):
+    results = all(func(x) for x in range(1, 100_000))
+
+    if results:
+        print(A)
+        break
+```
+
+- Ответ: **54**
+
+\chapter{Задачи на наименьшее множество}
+\section{Задача \textnumero~88 (Поляков)}
+![](../../data/15-images/88-polyakov.png)
+
+- Создадим пустое множество, в котором должны будут находиться нужные иксы.
+- Будем проходить по диапазону и учитывать только те `x`, при которых значение выражения является ложным. Если при каком-то `x` выражение ложно, то это нужный нам икс, который нужно добавить в пустое множество. Т.е. наша функция ложна для данного иска, т.к. он еще не лежит в множестве, которое используется в данной функции.
+- Создадим нужные множества:
+```python
+A = set()
+B = {2, 4, 6, 8, 10, 12}
+C = {3, 6, 9, 12, 15}
+```
+
+- Создадим функцию для проверки выражения:
+```python
+def func():
+    return (x in B) <= (((x in C) and (not (x in A))) \
+        <= (not (x in B)))
+```
+
+- Пройдемся по какому-то диапазону иксов. Если выражение равно нулю, значит, данный иск подходит нам и входит в множество `A`:
+```python
+for x in range(1, 100):
+    if func() is not True:
+        A.add(x)
+
+print(A)
+```
+
+**Итоговый код:**
+```python
+A = set()
+B = {2, 4, 6, 8, 10, 12}
+C = {3, 6, 9, 12, 15}
+
+
+def func():
+    return (x in B) <= (((x in C) and (not (x in A))) \
+        <= (not(x in B)))
+
+
+for x in range(1, 100):
+    if func() is not True:
+        A.add(x)
+
+print(sum(A))
+```
+
+- В множестве `A` будут лежать числа `12, 6`.
+
+- Ответ: **18**
+
+\chapter{}
