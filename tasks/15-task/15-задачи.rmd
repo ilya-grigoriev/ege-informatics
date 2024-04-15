@@ -243,4 +243,119 @@ print(sum(A))
 
 - Ответ: **18**
 
-\chapter{}
+\section{Задача \textnumero~149 (Поляков)}
+
+![](../../data/15-images/149-polyakov.png)
+
+- Сгенерируем все 8-битовые цепочки:
+```python
+from itertools import product
+bit8 = [i for i in product('01', repeat=8)]
+# 8-битовая цепочка состоит из нулей и единиц общей длиной 8
+```
+
+- Создадим множества:
+```python
+P = set(i for i in bit8 if i.startswith('11'))
+Q = set(i for i in bit8 if i.endswith('0'))
+A = set()
+```
+
+- Создадим функцию для проверки:
+```python
+def func():
+    m = x in A
+    n = x in P
+    h = x in Q
+    return (not m) <= ((not n) and (not h))
+```
+
+- Итерируемся для икса:
+```python
+for x in bit8:
+    if func() is not True:
+        A.add(x)
+
+print(len(A))
+```
+
+**Итоговый код:**
+```python
+from itertools import product
+
+bit8 = [''.join(i) for i in product('01', repeat=8)]
+
+P = set(i for i in bit8 if i.startswith('11'))
+Q = set(i for i in bit8 if i.endswith('0'))
+A = set()
+
+
+def func():
+    m = x in A
+    n = x in P
+    h = x in Q
+    return (not m) <= ((not n) and (not h))
+
+
+for x in bit8:
+    if func() is not True:
+        A.add(x)
+
+print(len(A))
+```
+
+- Ответ: **160**
+
+\chapter{Задачи на наибольшее множество}
+\section{Задача \textnumero~12924 (kompege.ru)}
+![](../../data/15-images/12924-kompege.png)
+
+- Идея заключается в том, чтобы создать множество, состоящее из большого кол-ва чисел.
+- Затем проходимся по этим числам, и те значения, которые при вызове функции дают ложь, будут лишними.
+
+\fbox{\parbox{\textwidth}{Не стоит путать этот способ с предыдущим, т.к. в прошлый раз наше множество было пустое, и мы заполняли его нужными числами, а теперь нужно просто "отсеить" лишние значения.}}
+
+- Создадим множества:
+```python
+A = set(range(1000))
+P = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
+Q = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30}
+```
+
+- Далее создаем функцию для проверки:
+```python
+def func():
+    m = x in A
+    n = x in P
+    h = x in Q
+    return (m <= n) and ((not h) <= (not m))
+```
+
+- Итерируемся для икса:
+```python
+for x in range(1000):
+    if func() is not True:
+        A.remove(x)
+
+print(len(A))
+```
+
+**Итоговый код:**
+```python
+A = set(range(1000))
+P = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
+Q = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30}
+
+
+def func():
+    return (m <= n) and ((not h) <= (not m))
+
+
+for x in range(1000):
+    if func() is not True:
+        A.remove(x)
+
+print(len(A))
+```
+
+- Ответ: **3**
