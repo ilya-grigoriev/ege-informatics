@@ -10,11 +10,14 @@ output:
     pandoc_args: ["--highlight-style=tango"]
 linkcolor: blue
 link-citations: yes
+fontenc: T2A
+lang: ru-RU
+babel-lang: russian
 ---
 
 \center \section{Если дан нормальный диапазон} \center
 
-\center ![](../data/17324.png) \center
+\center ![](../../data/17324.png) \center
 
 ```{python}
 def func(n):
@@ -48,8 +51,8 @@ print(len(nums))
 
 \newpage
 
-\center \section{Переводим в другие системы счисления} \center
-\center ![](../data/5-ya.png){width=80%} \center
+\section{Переводим в другие системы счисления}
+![](../../data/5-ya.png){width=80%}
 
 ```{python}
 def convert_to_base(n, base=2):
@@ -102,7 +105,7 @@ for n in range(1, 10000):
 \newpage
 
 \center \section{Переводим в другие системы счисления} \center
-\center ![](../data/5-55622.png){width=100%} \center
+\center ![](../../data/5-55622.png){width=100%} \center
 
 ```{python}
 def func(n):
