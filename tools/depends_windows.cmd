@@ -16,7 +16,7 @@ del install-tl.zip
 cd install-tl-*
 install-tl-windows.bat --scheme scheme-minimal -repository https://ctan.altspu.ru/systems/texlive/tlnet/
 tlmgr install xetex
-mkdir C:\texlive\2023\texmf-var\fonts\cache
+mkdir C:\texlive\2024\texmf-var\fonts\cache
 
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo Установка AnonymicePro Nerd Font
@@ -31,8 +31,8 @@ cd ..
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo Установка шрифтов для Latex
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-mkdir C:\texlive\2023\texmf-var\fonts\conf
-cd C:\texlive\2023\texmf-var\fonts\conf
+mkdir C:\texlive\2024\texmf-var\fonts\conf
+cd C:\texlive\2024\texmf-var\fonts\conf
 echo ^<dir^>C:/Windows/Fonts^</dir^> > fonts.conf
 fc-cache -vf
 
