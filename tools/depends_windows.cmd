@@ -14,7 +14,7 @@ wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
 unzip install-tl.zip
 del install-tl.zip
 cd install-tl-*
-install-tl-windows.bat --scheme scheme-minimal -repository https://ctan.altspu.ru/systems/texlive/tlnet/ --no-gui --no-interaction
+install-tl-windows.bat --scheme scheme-medium -repository https://ctan.altspu.ru/systems/texlive/tlnet/ --no-gui --no-interaction
 tlmgr install xetex xcolor
 mkdir C:\texlive\2024\texmf-var\fonts\cache
 
