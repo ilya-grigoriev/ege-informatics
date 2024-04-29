@@ -40,12 +40,12 @@ echo ~~~~~~~~~~~~~~~~~~
 echo Установка языка R
 echo ~~~~~~~~~~~~~~~~~~
 wget https://cloud.r-project.org/bin/windows/base/R-4.4.0-win.exe
-call R-4.3.2-win.exe
+call R-4.4.0-win.exe
 
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo Установка переменных окружения для R
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set PATH=%PATH%;"C:\Program Files\R\R-4.3.2\bin"
+set PATH=%PATH%;"C:\Program Files\R\R-4.4.0\bin"
 
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo Установка RMarkdown и необходимых компонентов для его работы
@@ -59,7 +59,7 @@ echo Удаление остаточных файлов
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~
 cd C:\Windows\Temp
 del AnonymousPro.zip*
-del R-4.3.2-win.exe*
+del R-4.4.0-win.exe*
 rmdir fonts /S /Q
 
 echo ~~~~~~~~~~~
