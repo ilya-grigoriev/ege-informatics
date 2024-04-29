@@ -1,5 +1,5 @@
 @ECHO OFF
-REM change CHCP to UTF-8
+:: change CHCP to UTF-8
 CHCP 65001
 cls
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -10,13 +10,13 @@ choco install wget unzip pandoc python312 -y
 echo ~~~~~~~~~~~~~~~
 echo Установка Latex
 echo ~~~~~~~~~~~~~~~
-wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
-unzip install-tl.zip
-del install-tl.zip
-cd install-tl-*
-install-tl-windows.bat --scheme scheme-medium -repository https://ctan.altspu.ru/systems/texlive/tlnet/ --no-gui --no-interaction
-tlmgr install xetex xcolor
+rmdir /s /q install-tl-*
+rmdir /s /q C:\texlive
+wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe
+call install-tl-windows.exe --scheme scheme-small
 mkdir C:\texlive\2024\texmf-var\fonts\cache
+del install-tl-windows.exe*
+tlmgr install framed tcolorbox babel-russian
 
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo Установка AnonymicePro Nerd Font
@@ -25,7 +25,10 @@ cd C:\Windows\Temp
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/AnonymousPro.zip
 unzip -o AnonymousPro.zip -d fonts
 cd fonts
-copy /Y *.ttf "C:\Windows\Fonts"
+::copy /Y *.ttf "C:\Windows\Fonts"
+for %i in (*.ttf) do (
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "FontName (TrueType)" /t REG_SZ /d %i /f
+)
 cd ..
 
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~
