@@ -4,7 +4,7 @@
 2) Перейдите в папку с данным проектом.
 3) Запустите файл `tools/depends_windows.cmd`:
 ```
-start tools/depends_windows.cmd
+start tools\depends_windows.cmd
 ```
 
 # Для \*nix систем
