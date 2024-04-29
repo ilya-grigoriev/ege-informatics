@@ -1,5 +1,5 @@
 @echo off
-PATH=%PATH%;"C:\Program Files\R\R-4.3.2\bin\x64"
+PATH=%PATH%;"C:\Program Files\R\R-4.4.0\bin\x64"
 mkdir pdfs
 for /F %%G in ('dir *.rmd /s /b') do (
 set "F=%%G"
