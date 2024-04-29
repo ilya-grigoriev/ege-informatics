@@ -21,9 +21,10 @@ tlmgr install framed tcolorbox babel-russian
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo Установка AnonymicePro Nerd Font
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+del AnonymousPro.zip*
 cd C:\Windows\Temp
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/AnonymousPro.zip
-unzip -o AnonymousPro.zip -d fonts
+unzip AnonymousPro.zip -d fonts
 cd fonts
 copy /Y *.ttf "C:\Windows\Fonts"
 cd ..
