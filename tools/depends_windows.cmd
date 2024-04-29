@@ -25,10 +25,7 @@ cd C:\Windows\Temp
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/AnonymousPro.zip
 unzip -o AnonymousPro.zip -d fonts
 cd fonts
-::copy /Y *.ttf "C:\Windows\Fonts"
-for %i in (*.ttf) do (
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "FontName (TrueType)" /t REG_SZ /d %i /f
-)
+copy /Y *.ttf "C:\Windows\Fonts"
 cd ..
 
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~
