@@ -39,6 +39,7 @@ fc-cache -vf
 echo ~~~~~~~~~~~~~~~~~~
 echo Установка языка R
 echo ~~~~~~~~~~~~~~~~~~
+cd C:\Windows\Temp
 wget https://cloud.r-project.org/bin/windows/base/R-4.4.0-win.exe
 call R-4.4.0-win.exe
 
