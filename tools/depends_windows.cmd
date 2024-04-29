@@ -13,7 +13,7 @@ echo ~~~~~~~~~~~~~~~
 rmdir /s /q install-tl-*
 rmdir /s /q C:\texlive
 wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe
-call install-tl-windows.exe --scheme scheme-small
+call install-tl-windows.exe --scheme scheme-medium
 mkdir C:\texlive\2024\texmf-var\fonts\cache
 del install-tl-windows.exe*
 tlmgr install framed tcolorbox babel-russian
