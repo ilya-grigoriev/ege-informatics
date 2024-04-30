@@ -4,7 +4,7 @@ cd /tmp/depends
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Установка необходимых инструментов"
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-sudo pacman -S wget unzip
+sudo pacman -S wget unzip pandoc
 
 echo ""
 echo "~~~~~~~~~~~~~~~~~"
@@ -25,7 +25,6 @@ echo ""
 echo "~~~~~~~~~~~~~~~"
 echo "Установка Latex"
 echo "~~~~~~~~~~~~~~~"
-sudo pacman -S pandoc
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 zcat < install-tl-unx.tar.gz | tar xf -
 rm -rf install-tl-unx.tar.gz*
