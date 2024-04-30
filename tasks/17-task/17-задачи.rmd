@@ -1,6 +1,6 @@
 ---
-mainfont: AnonymicePro Nerd Font
-monofont: AnonymicePro Nerd Font Mono
+mainfont: FiraCode Nerd Font
+monofont: FiraCode Nerd Font Mono
 geometry: "top=1.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm"
 documentclass: extreport
 title: Решение 17-го задания
@@ -16,7 +16,7 @@ output:
         - amsmath
 linkcolor: blue
 fontenc: T2A
-lang: ru-RU
+<!-- lang: ru-RU -->
 babel-lang: russian
 ---
 

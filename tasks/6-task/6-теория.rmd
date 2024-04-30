@@ -1,5 +1,6 @@
 ---
-mainfont: AnonymicePro Nerd Font Mono
+mainfont: FiraCode Nerd Font
+monofont: FiraCode Nerd Font Mono
 title: "**Решаем 6-е задание**"
 geometry: "top=0.8cm,bottom=2.5cm,left=1.6cm,right=1.6cm"
 documentclass: extarticle

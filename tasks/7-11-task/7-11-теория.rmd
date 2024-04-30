@@ -1,5 +1,6 @@
 ---
-mainfont: AnonymicePro Nerd Font Mono
+mainfont: FiraCode Nerd Font
+monofont: FiraCode Nerd Font Mono
 title: '**Теория для 7-го задания**'
 geometry: 'top=1.0cm,bottom=2.5cm,left=1.5cm,right=1.5cm'
 documentclass: extarticle

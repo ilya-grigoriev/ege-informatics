@@ -16,15 +16,15 @@ wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe
 call install-tl-windows.exe --scheme scheme-medium
 mkdir C:\texlive\2024\texmf-var\fonts\cache
 del install-tl-windows.exe*
-tlmgr install framed tcolorbox babel-russian cyrillic cm-super hyperref setspace indentfirst array
+tlmgr install framed tcolorbox babel-russian cyrillic cm-super hyperref setspace indentfirst array vmargin minted
 
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo Установка AnonymicePro Nerd Font
+echo Установка FiraCode Nerd Font
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-del AnonymousPro.zip*
 cd C:\Windows\Temp
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/AnonymousPro.zip
-unzip AnonymousPro.zip -d fonts
+del FiraCode.zip*
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
+unzip FiraCode.zip -d fonts
 cd fonts
 copy /Y *.ttf "C:\Windows\Fonts"
 cd ..
@@ -62,7 +62,7 @@ echo ~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo Удаление остаточных файлов
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~
 cd C:\Windows\Temp
-del AnonymousPro.zip*
+del FiraCode.zip*
 del R-4.4.0-win.exe*
 rmdir fonts /S /Q
 

@@ -4,7 +4,7 @@ cd /tmp/depends
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Установка необходимых инструментов"
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-sudo pacman -S wget unzip pandoc
+sudo pacman -S wget unzip pandoc python-pipx
 
 echo ""
 echo "~~~~~~~~~~~~~~~~~"
@@ -35,7 +35,10 @@ if ! [ -d "/usr/local/texlive" ]; then
     rm -rf install-tl-unx.tar.gz*
     cd install-tl-*
     sudo perl ./install-tl --no-interaction --scheme scheme-medium
-    sudo tlmgr install tcolorbox hyperref amsmath setspace indentfirst array
+    sudo tlmgr install tcolorbox hyperref amsmath setspace indentfirst array minted vmargin babel-russian cm-super hyphen-russian
+    sudo fmtutil-sys --all
+    sudo tlmgr install lh
+    pipx install pygments
     rm -rf install-tl-*
 else
     echo "Latex уже установлен"
@@ -44,19 +47,19 @@ fi
 
 echo ""
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-echo "Установка AnonymicePro Nerd Font"
+echo "Установка FiraCode Nerd Font"
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-if ! [[ $(fc-list | grep "Anonymice") ]]; then
+if ! [[ $(fc-list | grep "FiraCode") ]]; then
     rm -rf /tmp/fonts
-    rm -rf AnonymousPro.zip*
+    rm -rf FiraCode.zip*
 
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/AnonymousPro.zip
-    unzip AnonymousPro.zip -d fonts
-    rm -rf AnonymousPro.zip*
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
+    unzip FiraCode.zip -d fonts
+    rm -rf FiraCode.zip*
     cd fonts
     sudo cp *.ttf /usr/share/fonts
 else
-    echo "Шрифт AnonymicePro Nerd Font уже есть"
+    echo "Шрифт FiraCode Nerd Font уже есть"
 fi
 
 echo ""

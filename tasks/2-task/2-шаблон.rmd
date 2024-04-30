@@ -1,5 +1,6 @@
 ---
-mainfont: AnonymicePro Nerd Font Mono
+mainfont: FiraCode Nerd Font
+monofont: FiraCode Nerd Font Mono
 title: "**Шаблон для решения 2-го задания от Тимофея Хирьянова**"
 geometry: "top=0.5cm,bottom=2.5cm,left=2cm,right=2cm"
 documentclass: extarticle
