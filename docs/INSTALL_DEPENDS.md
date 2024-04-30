@@ -1,5 +1,5 @@
 # Для Windows
-0) У вас должен быть установлен [cholocatey](https://chocolatey.org/).
+0) У вас должен быть установлен [chocolatey](https://chocolatey.org/).
 1) Зайдите в `cmd.exe` (не в Powershell!) как администратор.
 2) Перейдите в папку с данным проектом.
 3) Запустите файл `tools/depends_windows.cmd`:
