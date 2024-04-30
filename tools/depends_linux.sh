@@ -18,12 +18,20 @@ echo "Установка RMarkdown"
 echo "~~~~~~~~~~~~~~~~~~~"
 Rscript -e "install.packages('rmarkdown')"
 Rscript -e "install.packages('reticulate')"
+Rscript -e "reticulate::virtualenv_remove()"
+Rscript -e "reticulate::virtualenv_create()"
 
 echo ""
 echo "~~~~~~~~~~~~~~~"
 echo "Установка Latex"
 echo "~~~~~~~~~~~~~~~"
-sudo pacman -S texlive-base texlive-lang-cyrillic texlive-latex-recommended texlive-xetex pandoc
+sudo pacman -S pandoc
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+zcat < install-tl-unx.tar.gz | tar xf -
+rm -rf install-tl-unx.tar.gz*
+cd install-tl-*
+perl ./install-tl --no-interaction --scheme scheme-medium
+tlmgr install tcolorbox hyperref amsmath setspace indentfirst array
 
 
 echo ""
