@@ -16,18 +16,7 @@ wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe
 call install-tl-windows.exe --scheme scheme-medium
 mkdir C:\texlive\2024\texmf-var\fonts\cache
 del install-tl-windows.exe*
-tlmgr install framed tcolorbox babel-russian cyrillic cm-super hyperref setspace indentfirst array vmargin minted
-
-echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo Установка FiraCode Nerd Font
-echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-cd C:\Windows\Temp
-del FiraCode.zip*
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
-unzip FiraCode.zip -d fonts
-cd fonts
-copy /Y *.ttf "C:\Windows\Fonts"
-cd ..
+tlmgr install framed tcolorbox babel-russian cyrillic cm-super hyperref setspace indentfirst array vmargin minted anonymouspro libertinus libertinus-type1 libertinus-fonts libertine libertinus-otf
 
 echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo Установка шрифтов для Latex

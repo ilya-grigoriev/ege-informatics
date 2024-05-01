@@ -4,7 +4,7 @@ cd /tmp/depends
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Установка необходимых инструментов"
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-sudo pacman -S wget unzip pandoc python-pipx
+sudo pacman -S wget unzip pandoc python-pipx ghostscript
 
 echo ""
 echo "~~~~~~~~~~~~~~~~~"
@@ -35,7 +35,7 @@ if ! [ -d "/usr/local/texlive" ]; then
     rm -rf install-tl-unx.tar.gz*
     cd install-tl-*
     sudo perl ./install-tl --no-interaction --scheme scheme-medium
-    sudo tlmgr install tcolorbox hyperref amsmath setspace indentfirst array minted vmargin babel-russian cm-super hyphen-russian
+    sudo tlmgr install tcolorbox hyperref amsmath setspace indentfirst array minted vmargin babel-russian cm-super hyphen-russian anonymouspro libertinus libertinus-type1 libertinus-fonts libertine libertinus-otf
     sudo fmtutil-sys --all
     sudo tlmgr install lh
     pipx install pygments
@@ -44,23 +44,6 @@ else
     echo "Latex уже установлен"
 fi
 
-
-echo ""
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-echo "Установка FiraCode Nerd Font"
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-if ! [[ $(fc-list | grep "FiraCode") ]]; then
-    rm -rf /tmp/fonts
-    rm -rf FiraCode.zip*
-
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
-    unzip FiraCode.zip -d fonts
-    rm -rf FiraCode.zip*
-    cd fonts
-    sudo cp *.ttf /usr/share/fonts
-else
-    echo "Шрифт FiraCode Nerd Font уже есть"
-fi
 
 echo ""
 echo "~~~~~~~~~~~"
