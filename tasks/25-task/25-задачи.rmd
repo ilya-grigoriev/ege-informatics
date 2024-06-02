@@ -378,14 +378,14 @@ for n in range(0, 10**8, 22768):
 ```python
     import re
 
-    match = re.search('^1(\d+)03.*6.*$', str(n))
-    if match:
+    match_ = re.search('^1(\d+)03.*6.*$', str(n))
+    if match_:
 ```
 - Хоть и сказано, что последовательность может быть пустой, далее говорится, что она не будет являться числом, следовательно, не будет считаться валидным ответом. Поэтому используем символ `+`.
 
 3) Найдем `N` с помощью \hyperref[group]{групп}:
 ```python
-        groups = match.groups()
+        groups = match_.groups()
 ```
 
 - [Метод `groups()`](https://docs.python.org/3/library/re.html#re.Match.groups) возвращает список из совпадений, находящихся в круглых скобках. Список может быть и пустым.
@@ -411,9 +411,9 @@ check_prime = lambda x: x > 1 and \
     all(x % i != 0 for i in range(2, int(x**0.5) + 1))
 
 for n in range(0, 10**8, 22768):
-    match = re.search('^1(.+)03.*6.*$', str(n))
-    if match:
-        groups = match.groups()
+    match_ = re.search('^1(.+)03.*6.*$', str(n))
+    if match_:
+        groups = match_.groups()
         if groups:
             N = int(groups[0])
             if check_prime(N) is not True:
