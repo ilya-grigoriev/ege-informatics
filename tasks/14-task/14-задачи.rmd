@@ -1,10 +1,9 @@
 ---
-mainfont: FiraCode Nerd Font
-monofont: FiraCode Nerd Font Mono
-geometry: "top=1.5cm,bottom=1.5cm,left=2cm,right=2.5cm"
-documentclass: extarticle
-title: Теория для 14-го задания
-fontsize: 12pt
+fontfamily: libertinus
+title: "Решение 14-го задания"
+geometry: "top=1.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm"
+documentclass: extreport
+fontsize: 14pt
 output:
   pdf_document:
     number_sections: false
@@ -14,19 +13,15 @@ output:
         - hyperref
         - setspace
         - amsmath
-        - tcolorbox
-always_allow_html: yes
 linkcolor: blue
+fontenc: T2A
+lang: ru-RU
+babel-lang: russian
 ---
-\renewcommand{\contentsname}{Оглавление}
 
-\newpage
-\doublespacing
 \tableofcontents
-\singlespacing
 
-\newpage
-\section{Полезные функции}
+\chapter{Полезные функции}
 - Функция для перевода числа из десятичной СС в другую
 
 ```python
@@ -62,10 +57,9 @@ def convert_from_other_number_system(digits: list[int], ns: int):
         for degree_of_ten, digit in enumerate(digits[::-1])])
 ```
 
-\newpage
-\section{Решение задач}
-\subsection{Определяем кол-во нулей}
-\center ![](../../data/14-images/10097-kompege.png) \center
+\chapter{Решение задач}
+\section{Определяем кол-во нулей}
+![](../../data/14-images/10097-kompege.png)
 
 ```{python}
 def cc(x):
@@ -82,9 +76,8 @@ result_converting = cc(exp)
 print(result_converting.count(0))
 ```
 
-\newpage
-\subsection{Находим значение переменной для выражения}
-\center ![](../../data/14-images/348-polyakov.png) \center
+\section{Находим значение переменной для выражения}
+![](../../data/14-images/348-polyakov.png)
 
 ```{python}
 def from_cc(digits, cc):
@@ -102,9 +95,8 @@ for x in range(2, 19):
         break
 ```
 
-\newpage
-\subsection{Находим значения переменных для выражения}
-\center ![](../../data/14-images/358-polyakov.png) \center
+\section{Находим значения переменных для выражения}
+![](../../data/14-images/358-polyakov.png)
 
 ```{python}
 def from_cc(digits, cc):
@@ -131,9 +123,8 @@ print(answer)
 - Переменной `min_sum_vars` обозначим минимальную найденную сумму подходящих `x` и `y`.
 - Переменная `answer` будет служить конечным ответом.
 
-\newpage
-\subsection{Находим значение переменной как системы счисления}
-\center ![](../../data/14-images/181-polyakov.png) \center
+\section{Находим значение переменной как системы счисления}
+![](../../data/14-images/181-polyakov.png)
 
 ```{python}
 def from_cc(digits, cc):
@@ -150,9 +141,11 @@ for n in range(2, 100):
         break
 ```
 
-\newpage
-\subsection{Находим систему счисления для записей с доп. условием}
-\center ![](../../data/14-images/74-polyakov.png) \center
+- Функция `from_cc` переводит записи из других СС в десятичную.
+- Это полезно, когда СС больше 36, потому что [`int`](https://docs.python.org/3/library/functions.html#int) принимает конвертирование записей только до этой СС.
+
+\section{Находим систему счисления для записей с доп. условием}
+![](../../data/14-images/74-polyakov.png)
 
 
 ```{python}
