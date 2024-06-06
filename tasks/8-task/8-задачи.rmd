@@ -22,3 +22,11 @@ babel-lang: russian
 \tableofcontents
 \chapter{Полезные советы}
 - Число (в любой системе счисления), не может начинаться с нуля!
+- В условии задачи иногда сказано, что нужно слова записывать в алфавитном порядке.
+- Чтобы посчитать повторяющиеся числа, можно воспользоваться функцией [`collections.Counter`](https://docs.python.org/3/library/collections.html#collections.Counter). Дальше с этим словарем можно делать другие операции (например, что повторяющиеся числа должны быть четными и т.д.).
+```{python}
+from collections import Counter
+
+s = [1, 1, 2, 3, 3]
+print(Counter(s))
+```
