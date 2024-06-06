@@ -1,24 +1,31 @@
 ---
-mainfont: FiraCode Nerd Font
-monofont: FiraCode Nerd Font Mono
-title: "**Решаем 5-е задания**"
-geometry: "top=1.5cm,bottom=2.5cm,left=2cm,right=2cm"
-documentclass: extarticle
-fontsize: 11pt
+fontfamily: libertinus
+title: "Решение 5-го задания"
+geometry: "top=1.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm"
+documentclass: extreport
+fontsize: 14pt
 output:
   pdf_document:
+    number_sections: false
     latex_engine: xelatex
     pandoc_args: ["--highlight-style=tango"]
+    extra_dependencies:
+        - hyperref
+        - setspace
+        - amsmath
 linkcolor: blue
-link-citations: yes
 fontenc: T2A
 lang: ru-RU
 babel-lang: russian
 ---
 
-\center \section{Если дан нормальный диапазон} \center
 
-\center ![](../../data/17324.png) \center
+\tableofcontents
+
+\chapter{Решение задач}
+\section{Если дан нормальный диапазон}
+
+![](../../data/5-images/17324.png)
 
 ```{python}
 def func(n):
@@ -50,19 +57,16 @@ print(len(nums))
 
 [^1]: Если метод `find` не находит нужный элемент, он возвращает `-1`.
 
-\newpage
-
 \section{Переводим в другие системы счисления}
-![](../../data/5-ya.png){width=80%}
+![](../../data/5-images/5-ya.png){width=80%}
 
 ```{python}
 def convert_to_base(x, base=2):
     result = []  # (1)
     while x > 0:  # (2)
-        result = [x % base] + result  # (3)
+        result.append(str(x % base))  # (3)
         x //= base  # (4)
-
-    return result
+    return ''.join(result[::-1])
 
 
 for n in range(1, 10000):
@@ -92,13 +96,11 @@ for n in range(1, 10000):
 
 - Основной блок алогоритма:
 5) Переводим полученную запись в десятичную.
-6) Нам нужно минимальное число, которое больше 10000.
+6) Нам нужно минимальное число, которое больше $10000$.
 7) Остальные числа нас не интересуют, поэтому завершаем цикл.
 
-\newpage
-
-\center \section{Переводим в другие системы счисления} \center
-\center ![](../../data/5-55622.png){width=100%} \center
+\section{Переводим в другие системы счисления \textnumero 2}
+![](../../data/5-images/5-55622.png){width=100%}
 
 ```{python}
 def func(n):
@@ -161,9 +163,7 @@ print(end_n - start_n)  # (11)
 
 [^4]: У нас всего 3 итерации. На каждой добавляется одна цифра в конец. Следовательно, всего добавится 3 цифры. Добавление единицы или нуля увеличивают десятичное число примерно вдвое. Следовательно, 3 итерации увеличат число в 8 раз. Советую посмотреть [\text{\underline{объяснение от Кабанова}}](https://www.youtube.com/live/e6LREsEYSgs?si=0ublQCTc_v0lIxhI&t=6638) на этот счет.
 
-\newpage
-
-# Полезные советы
+\chapter{Полезные советы}
 
 - Если сказано, что нужно сделать восьмибитовую запись (т.е. заполнить запись лишними нулями в начале), то воспользуйтесь [методом `zfill`](https://docs.python.org/3/library/stdtypes.html#str.zfill).
 - Если нужно заменить единицы на нолики и наоборот, то нужно единицы поменять на какую-то другую цифру (например, на 2), затем нолики заменить на единицы, а потом двойки - на нолики.
