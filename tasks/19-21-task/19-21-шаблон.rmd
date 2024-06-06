@@ -1,9 +1,8 @@
 ---
-mainfont: FiraCode Nerd Font
-monofont: FiraCode Nerd Font Mono
+fontfamily: libertinus
+title: "Шаблон для 19-21-го задания"
 geometry: "top=1.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm"
 documentclass: extreport
-title: Решение 19-21 задач
 fontsize: 14pt
 output:
   pdf_document:
@@ -19,6 +18,7 @@ fontenc: T2A
 lang: ru-RU
 babel-lang: russian
 ---
+
 
 \tableofcontents
 
@@ -166,7 +166,7 @@ def func(r, r_2, s):
 \subsection{Задание 19}
 2) Пишем следующее:
 ```python
-print(19, min([r for r in range(1, 32) if func(9, r, 2)]))
+print(19, min([r_2 for r_2 in range(1, 32) if func(9, r_2, 2)]))
 ```
 - У нас ничего не выходит. Дело в том, что при вызове функции мы как бы говорим, что нам нужный те `r`, при которых Ваня победит первым ходом из любого хода Пети. Но в задании же сказано, что Петя допустил неудачное решение. Следовательно, нам нужен только этот случай, когда Петя допустил ошибку.
 - Т.к. в данном случае Петя будет ходить при нечетных `s`, то нужно заменить `all` на `any` в нашей функции. Сократим возвращение:
@@ -180,8 +180,8 @@ print(19, min([r for r in range(1, 32) if func(9, r, 2)]))
 3) Возвращаем функцию в предыдущее состояние.
 4) Пишем результат для следующего задания:
 ```python
-print(20, [r for r in range(1, 32)
-    if (not func(9, r, 1)) and func(9, r, 3)])
+print(20, [r_2 for r_2 in range(1, 32)
+    if (not func(9, r_2, 1)) and func(9, r_2, 3)])
 ```
 
 - Получаем ответ: **\boxed{4 15}**
@@ -189,8 +189,8 @@ print(20, [r for r in range(1, 32)
 \subsection{Задание 21}
 5) Найдем результат для последнего:
 ```python
-print(21, [r for r in range(1, 32)
-    if (not func(9, r, 2)) and func(9, r, 4)])
+print(21, [r_2 for r_2 in range(1, 32)
+    if (not func(9, r_2, 2)) and func(9, r_2, 4)])
 ```
 
 - Получаем ответ: **\boxed{14}**
