@@ -1,0 +1,24 @@
+---
+fontfamily: libertinus
+title: "Решение 8-го задания"
+geometry: "top=1.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm"
+documentclass: extreport
+fontsize: 14pt
+output:
+  pdf_document:
+    number_sections: false
+    latex_engine: xelatex
+    pandoc_args: ["--highlight-style=tango"]
+    extra_dependencies:
+        - hyperref
+        - setspace
+        - amsmath
+linkcolor: blue
+fontenc: T2A
+lang: ru-RU
+babel-lang: russian
+---
+
+\tableofcontents
+\chapter{Полезные советы}
+- Число (в любой системе счисления), не может начинаться с нуля!
