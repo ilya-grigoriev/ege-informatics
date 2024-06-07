@@ -6,7 +6,7 @@ scores = map(int, file.readlines())
 sorted_scores = sorted(scores, reverse=True)
 
 wins = sorted_scores[:k]
-sorted_scores = sorted_scores[k:]
+after_wins = sorted_scores[k:]   # все те, кто следует после победителей
 pre_wins = sorted_scores[:m]
 
 file.close()
